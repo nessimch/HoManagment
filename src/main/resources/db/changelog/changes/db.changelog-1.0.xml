@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet  author="NCH"  id="changelog-1.0">
+        <sql dbms="postgresql" endDelimiter=";">
+            CREATE SCHEMA if not exists homanagment
+        </sql>
+        <!-- Referential tables -->
+        <createTable tableName="client">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="client_name" type="varchar(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="client_mail" type="varchar(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="product">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="product_name" type="varchar(100)">
+            </column>
+            <column name="quantity" type="int">
+            </column>
+        </createTable>
+
+        <createTable tableName="model">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="model_name" type="varchar(100)">
+            </column>
+            <column name="selling_price" type="DOUBLE PRECISION">
+            </column>
+            <column name="purchase_price" type="DOUBLE PRECISION">
+            </column>
+            <column name="product_id" type="int">
+                <constraints foreignKeyName="fk_product" referencedTableName="product" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="order">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="transportor" type="varchar(100)">
+            </column>
+            <column name="purchase_date" type="date">
+            </column>
+            <column name="advance" type="DOUBLE PRECISION">
+            </column>
+            <column name="price" type="DOUBLE PRECISION">
+            </column>
+            <column name="foire" type="varchar(100)">
+            </column>
+            <column name="client_id" type="int">
+                <constraints foreignKeyName="fk_client" referencedTableName="client" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="order" indexName="idx_order_client">
+            <column name="client_id"/>
+        </createIndex>
+
+        <createIndex tableName="model" indexName="idx_model_product">
+            <column name="product_id"/>
+        </createIndex>
+
+<createTable tableName="products_orders" remarks="Join table to store orders of product ">
+            <column name="order" type="int">
+                <constraints primaryKey="true" nullable="false" foreignKeyName="fk_order_product" referencedTableName="order" referencedColumnNames="id"/>
+            </column>
+            <column name="product" type="int">
+                <constraints primaryKey="true" nullable="false" foreignKeyName="fk_product_order" referencedTableName="product" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+
+            </changeSet>
+</databaseChangeLog>
