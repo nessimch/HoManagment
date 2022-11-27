@@ -12,7 +12,7 @@ import java.util.Set;
 @Builder
 @Data
 public class Order {
-  private java.lang.Integer id;
+  private Integer id;
   private Client client;
   private Set<Product> products = new HashSet<>();
   private String transportor;

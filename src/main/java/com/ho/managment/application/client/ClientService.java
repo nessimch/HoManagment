@@ -44,7 +44,7 @@ public class ClientService {
 
     }
 
-   public void delete(java.lang.Integer id) {
+   public void delete(Integer id) {
         if(!clientRepository.existsById(id)) {
             throw new EntityNotFoundException("Invalid Id was provided");
         }
