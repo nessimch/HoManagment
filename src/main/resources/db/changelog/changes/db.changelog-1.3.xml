@@ -7,4 +7,8 @@
     <changeSet author="NCH" id="changelog-1.3">
     <renameTable newTableName="orders" oldTableName="order"/>
     </changeSet>
+
+    <changeSet author="SM" id="changelog-1.3.1">
+        <renameSequence newSequenceName="orders_id_seq" oldSequenceName="order_id_seq"/>
+    </changeSet>
 </databaseChangeLog>

@@ -20,9 +20,17 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="orders")
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,84 +61,4 @@ public class Order {
 
     @Column(name = "foire")
     private String foire;
-
-   
-
-    public Order(Client client, Set<Product> products, String transportor, LocalDateTime date, double advance,
-            double price, String foire) {
-        this.client = client;
-        this.products = products;
-        this.transportor = transportor;
-        this.date = date;
-        this.advance = advance;
-        this.price = price;
-        this.foire = foire;
-    }
-
-    public Order() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public String getTransportor() {
-        return transportor;
-    }
-
-    public void setTransportor(String transportor) {
-        this.transportor = transportor;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public double getAdvance() {
-        return advance;
-    }
-
-    public void setAdvance(double advance) {
-        this.advance = advance;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getFoire() {
-        return foire;
-    }
-
-    public void setFoire(String foire) {
-        this.foire = foire;
-    }
-
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
 }
