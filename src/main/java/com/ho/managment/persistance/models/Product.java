@@ -1,7 +1,9 @@
 package com.ho.managment.persistance.models;
 
-import java.util.HashSet;
-import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,12 +12,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Data
 @Entity
 @Table(name="product")
 public class Product {
@@ -31,62 +35,4 @@ public class Product {
 
     @Column(name = "quantity")
     private Integer quantity;
-    
-
-    public Product(String name, Set<Model> models, Integer quantity) {
-        this.name = name;
-        this.models = models;
-        this.quantity = quantity;
-    }
-    public Product() {
-    }
-
-
-
-    public Integer getId() {
-        return id;
-    }
-
-
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-
-
-    public String getName() {
-        return name;
-    }
-
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-
-    public Set<Model> getModels() {
-        return models;
-    }
-
-
-
-    public void setModels(Set<Model> models) {
-        this.models = models;
-    }
-
-
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-    
 }

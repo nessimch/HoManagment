@@ -1,7 +1,7 @@
 package com.ho.managment.controller.order;
 
 import com.ho.managment.Service.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +16,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("order")
+@RequiredArgsConstructor
 public class OrderController {
-    @Autowired
-    private OrderService orderService;
+
+    private final OrderService orderService;
 
     @GetMapping("")
     public List<OrderDto> findOrders(){
